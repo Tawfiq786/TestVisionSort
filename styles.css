@@ -195,7 +195,6 @@ input {
 }
 
 
-
 @media (min-width: 0px) and (max-width: 767px) and (max-width: 767px) {
   /* Mobile Landscape */
 
@@ -240,7 +239,7 @@ input {
 
   .file-container {
     width: 100%;
-    height: 25rem;
+    height: 35rem;
     display: flex;
     text-align: center;
     flex-direction: column;
