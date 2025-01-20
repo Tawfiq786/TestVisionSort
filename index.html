@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision Sort</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Recursive:wght@300..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar Section -->
+      <section id="nav">
+        <div class="nav-container">
+            <div class="logo"><p>Vision<span>Sort</span></p></div>
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+      <!-- Main Section -->
+      <section id="main">
+        <div class="main-container">
+            <div class="file-container">
+
+              <div id="cameraContainer">
+                <!-- Live Video Feed -->
+                <video id="video" autoplay></video>
+                <!-- Captured Image -->
+                <img id="capturedImage" alt="Captured Image" style="display: none;">
+                <!-- Capture Button -->
+                <br>
+                <div class="cameraControlButtons">
+                  <button id="captureButton">Capture Photo</button>
+                  <button id="refreshButton">Refresh Feed</button>
+                </div>
+            </div>
+
+            </div>
+            <div class="details-container">
+                <h1>Image Analysis</h1>
+                <table class="item-table">
+                    <thead>
+                        <tr>
+                            <th>Item Detected</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="Can">
+                            <td>Aluminum can</td>
+                            <td>0</td>
+                            <td class="0.10">$0.00</td>
+                        </tr>
+                        <tr id="Beer_Bottle">
+                            <td>Beer bottle</td>
+                            <td>0</td>
+                            <td class="0.10">$0.00</td>
+                        </tr>
+                        <tr id="Plastic_Bottle">
+                            <td>Plastic Bottles</td>
+                            <td>0</td>
+                            <td class="0.10">$0.00</td>
+                        </tr>
+                        <tr id="Plastic_Jug">
+                            <td>Plastic Jugs</td>
+                            <td>0</td>
+                            <td class="0.25">$0.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot> 
+                        <tr>
+                            <td colspan="2">Total</td>
+                            <td class="totalValue">$0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <section id="footer">
+        <p>Developed By Tawfiq Mawani</p> 
+      </section>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
