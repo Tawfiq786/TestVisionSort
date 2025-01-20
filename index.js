@@ -94,3 +94,41 @@ fetch("https://vision-kj8o.onrender.com/upload", {
     console.error(error);
   });
 });
+
+
+
+
+
+
+const flipButton = document.getElementById("flipCamera");
+
+let currentStream;
+let useBackCamera = true; // Start with the back camera
+
+// Function to Start the Camera
+async function startCamera() {
+    if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop()); // Stop current stream
+    }
+
+    const constraints = {
+        video: { facingMode: useBackCamera ? "environment" : "user" }
+    };
+
+    try {
+        currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = currentStream;
+    } catch (error) {
+        console.error("Error accessing camera:", error);
+        alert("Camera access denied or not available.");
+    }
+}
+
+// Flip Camera on Button Click
+flipButton.addEventListener("click", () => {
+    useBackCamera = !useBackCamera; // Toggle between front and back
+    startCamera();
+});
+
+// Start Camera on Page Load
+startCamera();
