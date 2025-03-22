@@ -95,13 +95,6 @@ fetch("https://vision-kj8o.onrender.com/upload", {
   });
 });
 
-
-
-
-
-
-const flipButton = document.getElementById("flipCamera");
-
 let currentStream;
 let useBackCamera = true; // Start with the back camera
 
@@ -124,11 +117,6 @@ async function startCamera() {
     }
 }
 
-// Flip Camera on Button Click
-flipButton.addEventListener("click", () => {
-    useBackCamera = !useBackCamera; // Toggle between front and back
-    startCamera();
-});
 
 // Start Camera on Page Load
 startCamera();
