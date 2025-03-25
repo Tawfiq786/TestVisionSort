@@ -71,7 +71,9 @@
   border-radius: 1.5rem;
   width: 45%;
   padding: 2rem;
-  height: 40rem;
+  /* height: 40rem; */
+  height: auto;
+  overflow: scroll;
 }
 
 h1 {
@@ -194,7 +196,6 @@ input {
   justify-content: space-between;
 }
 
-
 @media (min-width: 0px) and (max-width: 767px) and (max-width: 767px) {
   /* Mobile Landscape */
 
@@ -277,4 +278,228 @@ input {
 
 @media (min-width: 1025px) {
   /* Large Screens */
+}
+
+.recyclability-info{
+  margin-top: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* CHANGES FOR THE SIDEBAR */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+  overflow-x: hidden;
+}
+
+/* Side Panel */
+.side-panel {
+  position: fixed;
+  right: -350px;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.panel-toggle {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #7300ff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  width: auto;
+  height: 40px;
+  padding: 0 15px;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(115, 0, 255, 0.3);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.panel-toggle:hover {
+  background: #5d00cc;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.panel-toggle .arrow {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Main Content */
+.main-content {
+  margin-right: 0;
+  padding: 20px;
+  transition: margin 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Panel Elements */
+.panel-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #7300ff;
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #7300ff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  margin-bottom: 15px;
+}
+
+.btn-primary:hover {
+  background-color: #5d00cc;
+  transform: translateY(-2px);
+}
+
+.radius-control {
+  margin-bottom: 20px;
+}
+
+.radius-control label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #7300ff;
+  margin-bottom: 5px;
+}
+
+.radius-value {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+.depot-counter {
+  background: #f8f5ff;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border: 1px solid #e0e0e0;
+}
+
+/* Map Container */
+.map-container {
+  flex: 1;
+  min-height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .side-panel {
+      width: 300px;
+      right: -300px;
+  }
+  .panel-toggle {
+      right: 10px;
+      font-size: 0.9rem;
+      padding: 0 10px;
+  }
+}
+
+/* Explicit range input styling */
+input[type="range"] {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+/* Thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #7300ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Track styling for Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #7300ff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-track {
+  background: #ddd;
+  border-radius: 4px;
+  height: 8px;
+}
+
+#radiusSlider {
+  opacity: 1 !important;
+  visibility: visible !important;
 }

@@ -10,87 +10,155 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Recursive:wght@300..1000&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   </head>
   <body>
-    <div class="container">
-      <!-- Navbar Section -->
-      <section id="nav">
-        <div class="nav-container">
-            <div class="logo"><p>Vision<span>Sort</span></p></div>
+
+
+<!-- Side Panel -->
+<div class="side-panel" id="sidePanel">
+  <div class="panel-content">
+      <div class="panel-header">
+          <h2>Depot Finder</h2>
+      </div>
+      
+      <div class="control-group">
+          <button class="btn-primary" onclick="getLocation()">Locate Depots</button>
+          
+          <div class="radius-control">
+              <label>Search Radius</label>
+              <input type="range" min="1" max="50" value="10" id="radiusSlider">
+              <div class="radius-value">
+                  <span>1 km</span>
+                  <span id="radiusValue">10 km</span>
+                  <span>50 km</span>
+              </div>
+          </div>
+          
+          <div class="depot-counter">
+              Depots Found: <span id="depotCount">0</span>
+          </div>
+      </div>
+      
+      <div class="map-container">
+          <div id="map"></div>
+      </div>
+  </div>
+</div>
+
+<!-- Toggle Button -->
+<button class="panel-toggle" id="panelToggle">
+  <span class="arrow">←</span> Depot Finder
+</button>
+
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+  <!-- Your main page content would go here -->
+
+
+  <div class="container">
+    <!-- Navbar Section -->
+    <section id="nav">
+      <div class="nav-container">
+        <div class="logo">
+          <p>Vision<span>Sort</span></p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <div class="divider"></div>
+    <div class="divider"></div>
 
-      <!-- Main Section -->
-      <section id="main">
-        <div class="main-container">
-            <div class="file-container">
-
-              <div id="cameraContainer">
-                <!-- Live Video Feed -->
-                <video id="video" autoplay></video>
-                <!-- Captured Image -->
-                <img id="capturedImage" alt="Captured Image" style="display: none;">
-                <!-- Capture Button -->
-                <br>
-                <div class="cameraControlButtons">
-                  <button id="captureButton">Capture Photo</button>
-                  <button id="refreshButton">Refresh Feed</button>
-                </div>
+    <!-- Main Section -->
+    <section id="main">
+      <div class="main-container">
+        <div class="file-container">
+          <div id="cameraContainer">
+            <!-- Live Video Feed -->
+            <video id="video" autoplay></video>
+            <!-- Captured Image -->
+            <img
+              id="capturedImage"
+              alt="Captured Image"
+              style="display: none"
+            />
+            <!-- Capture Button -->
+            <br />
+            <div class="cameraControlButtons">
+              <button id="captureButton">Capture Photo</button>
+              <button id="refreshButton">Refresh Feed</button>
             </div>
-
-            </div>
-            <div class="details-container">
-                <h1>Image Analysis</h1>
-                <table class="item-table">
-                    <thead>
-                        <tr>
-                            <th>Item Detected</th>
-                            <th>Quantity</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="Can">
-                            <td>Aluminum can</td>
-                            <td>0</td>
-                            <td class="0.10">$0.00</td>
-                        </tr>
-                        <tr id="Beer_Bottle">
-                            <td>Beer bottle</td>
-                            <td>0</td>
-                            <td class="0.10">$0.00</td>
-                        </tr>
-                        <tr id="Plastic_Bottle">
-                            <td>Plastic Bottles</td>
-                            <td>0</td>
-                            <td class="0.10">$0.00</td>
-                        </tr>
-                        <tr id="Plastic_Jug">
-                            <td>Plastic Jugs</td>
-                            <td>0</td>
-                            <td class="0.25">$0.00</td>
-                        </tr>
-                    </tbody>
-                    <tfoot> 
-                        <tr>
-                            <td colspan="2">Total</td>
-                            <td class="totalValue">$0.00</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+          </div>
         </div>
-      </section>
+        <div class="details-container">
+          <h1>Image Analysis</h1>
+          <table class="item-table">
+            <thead>
+              <tr>
+                <th>Item Detected</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="Can">
+                <td>Aluminum can</td>
+                <td>0</td>
+                <td class="0.10">$0.00</td>
+              </tr>
+              <tr id="Beer_Bottle">
+                <td>Beer bottle</td>
+                <td>0</td>
+                <td class="0.10">$0.00</td>
+              </tr>
+              <tr id="Plastic_Bottle">
+                <td>Plastic Bottles</td>
+                <td>0</td>
+                <td class="0.10">$0.00</td>
+              </tr>
+              <tr id="Plastic_Jug">
+                <td>Plastic Jugs</td>
+                <td>0</td>
+                <td class="0.25">$0.00</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Total</td>
+                <td class="totalValue">$0.00</td>
+              </tr>
+            </tfoot>
+          </table>
+          <!-- Recyclability Section -->
+          <div
+            id="recyclabilityResults"
+            class="recyclability-info"
+            style="display: none"
+          >
+            <h2>Recyclability Information:</h2>
+            <p id="recyclabilityText"></p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Footer Section -->
-      <section id="footer">
-        <p>Developed By Tawfiq Mawani</p> 
-      </section>
-    </div>
+    <!-- Footer Section -->
+    <section id="footer">
+      <p>Developed By Tawfiq Mawani</p>
+    </section>
+  </div>
+
+
+</div>
+
 
     <script src="index.js"></script>
   </body>
